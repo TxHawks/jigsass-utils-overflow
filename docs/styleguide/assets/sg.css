@@ -1,0 +1,500 @@
+/* ---
+section: Overflow Utils
+title: Introduction
+order: -10
+---
+
+A collection of dynamically generated `overflow` utility classes.
+
+Class names follow the [Emmet](http://docs.emmet.io/cheat-sheet/) abbreviation
+syntax, with colons (':') replaced by two dashes (`--`) to follow BEM naming
+conventions.
+E.g., the `overflow: hidden` utility class name is `.u-ov--h`.
+
+#### Available classes
+
+  - `.u-ov--v` (overflow: visible)
+  - `.u-ov--h` (overflow: hidden)
+  - `.u-ov--s` (overflow: scroll)
+  - `.u-ov--a` (overflow: auto)
+
+
+  - `.u-ovx--v` (overflow-x: visible)
+  - `.u-ovx--h` (overflow-x: hidden)
+  - `.u-ovx--s` (overflow-x: scroll)
+  - `.u-ovx--a` (overflow-x: auto)
+
+
+  - `.u-ovy--v` (overflow-y: visible)
+  - `.u-ovy--h` (overflow-y: hidden)
+  - `.u-ovy--s` (overflow-y: scroll)
+  - `.u-ovy--a` (overflow-y: auto)
+
+
+#### Installation
+
+Using npm:
+
+```sh
+npm i -S jigsass-utils-overflow
+```
+
+#### Usage
+Import JigSass Utils Overflow into your main scss file near its very end, together with all
+other utilities (utilities should always be the last to be imported).
+
+```scss
+@import 'path/to/jigsass-utils-overflow/scss/index';
+```
+
+Like all other JigSass Utils, JigSass Overfolow does not automatically generate any CSS
+when imported. You would need to explicitly indicate that each individual overflow
+class should actually be generated in each component or object it is used in
+(clarification: This will include style declarations inside `.foo` and .`bar`):
+
+```scss
+// _c.foo.scss
+.foo {
+  @include jigsass-util(u-ov, $modifier: h); // <-- overfolow: hidden
+
+  ...
+}
+```
+
+```scss
+// _c.bar.scss
+.bar {
+  @include jigsass-util(u-ovx, $modifier: h);  // <-- overflow-x: hidden
+  @include jigsass-util(u-ovx, $modifier: s, $from: large); // <-- overflow-x: scroll from large bp and on.
+
+  ...
+}
+```
+
+Doing so helps us a great deal with portability, as no matter where we import component or object
+partials, the correct utility classes will be generated. Think of it as a poor man's dependency
+management.
+
+Developer communication is also assisted by including "dependencies" wherever they are required,
+as anyone going through a partial, can easily understand how it should be marked up with just a
+glance.
+
+As far as bloat goes, just don't worry about it - the actual styles will only be generated once,
+at the location in the cascade where the Jigsass Clearfix partial was imported into the main file.
+
+
+JigSass Overflow classes are responsive-enabled, using [JigSass MQ](https://txhawks.github.io/jigsass-tools-mq/)
+and the breakpoints defined in the [$jigsass-breakpoints](https://txhawks.github.io/jigsass-tools-mq/#variable-jigsass-breakpoints) variable.
+
+Based on the breakpoint arguments passed to `jigsass-util` when including a overflow class, responsive
+modifiers are generated according to the following logic:
+
+```scss
+.u-ov--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
+.u-ovx--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
+.u-ovy--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
+```
+
+So, assuming the `medium`, `large` and `landscape` breakpoints are defined in `$jigsass-breakpoints`
+as `600px`, `1024px` and `(orientation: landscape)` respectively,
+
+```scss
+@include jigsass-util(u-ov, $modifier: h);
+```
+will generate the `.u-ov--h` class, which is not limited to any media-query.
+
+```scss
+@include jigsass-util(u-ov, $modifier: h, $until: medium);
+```
+
+will generate the `.u-ov--h--until-medium` class, which will be in effect at
+`(max-width: 37.49em)` and will override styles in the default class until that point.
+
+```scss
+@include jigsass-util(u-ov, $modifier: h, $from: large, $misc: landscape);
+```
+
+will generate the `.u-ov--h--from-large-when-landscape` class, which will go into
+effect at `(min-width: 64em) and (orientation: landscape)` and will override styles in the default
+class under these  conditions.
+
+
+**License:** MIT
+
+*/
+.u-ov--a {
+  overflow: auto;
+  /* ---
+section: Overflow Utils
+title: overflow auto
+order: 1
+---
+**.u-ov--a**
+
+A utility class for setting an element's overflow to auto.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ov, $modifier: a [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo  u-ov--a'>
+  This element's overflow is set to auto.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-ov--h {
+  overflow: hidden;
+  /* ---
+section: Overflow Utils
+title: overflow hidden
+order: 2
+---
+**.u-ov--h**
+
+A utility class for setting an element's overflow to hidden.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ov, $modifier: h [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo  u-ov--h'>
+  This element's overflow is set to hidden.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-ov--s {
+  overflow: scroll;
+  /* ---
+section: Overflow Utils
+title: overflow scroll
+order: 3
+---
+**.u-ov--s**
+
+A utility class for setting an element's overflow to scroll.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ov, $modifier: s [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo  u-ov--s'>
+  This element's overflow is set to scroll.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-ov--v {
+  overflow: visible;
+  /* ---
+section: Overflow Utils
+title: overflow visible
+order: 4
+---
+**.u-ov--v**
+
+A utility class for setting an element's overflow to visible.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ov, $modifier: v [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo  u-ov--v'>
+  This element's overflow is set to visible.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-ovx--a {
+  overflow-x: auto;
+  /* ---
+section: Overflow Utils
+title: overflow-x auto
+order: 105
+---
+**.u-ovx--a**
+
+A utility class for setting an element's overflow-x to auto.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ovx, $modifier: a [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo fpo--x u-ovx--a'>
+  This element's overflow-x is set to auto.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-ovx--h {
+  overflow-x: hidden;
+  /* ---
+section: Overflow Utils
+title: overflow-x hidden
+order: 106
+---
+**.u-ovx--h**
+
+A utility class for setting an element's overflow-x to hidden.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ovx, $modifier: h [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo fpo--x u-ovx--h'>
+  This element's overflow-x is set to hidden.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-ovx--s {
+  overflow-x: scroll;
+  /* ---
+section: Overflow Utils
+title: overflow-x scroll
+order: 107
+---
+**.u-ovx--s**
+
+A utility class for setting an element's overflow-x to scroll.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ovx, $modifier: s [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo fpo--x u-ovx--s'>
+  This element's overflow-x is set to scroll.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-ovx--v {
+  overflow-x: visible;
+  /* ---
+section: Overflow Utils
+title: overflow-x visible
+order: 108
+---
+**.u-ovx--v**
+
+A utility class for setting an element's overflow-x to visible.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ovx, $modifier: v [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo fpo--x u-ovx--v'>
+  This element's overflow-x is set to visible.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-ovy--a {
+  overflow-y: auto;
+  /* ---
+section: Overflow Utils
+title: overflow-y auto
+order: 209
+---
+**.u-ovy--a**
+
+A utility class for setting an element's overflow-y to auto.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ovy, $modifier: a [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo  u-ovy--a'>
+  This element's overflow-y is set to auto.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-ovy--h {
+  overflow-y: hidden;
+  /* ---
+section: Overflow Utils
+title: overflow-y hidden
+order: 210
+---
+**.u-ovy--h**
+
+A utility class for setting an element's overflow-y to hidden.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ovy, $modifier: h [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo  u-ovy--h'>
+  This element's overflow-y is set to hidden.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-ovy--s {
+  overflow-y: scroll;
+  /* ---
+section: Overflow Utils
+title: overflow-y scroll
+order: 211
+---
+**.u-ovy--s**
+
+A utility class for setting an element's overflow-y to scroll.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ovy, $modifier: s [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo  u-ovy--s'>
+  This element's overflow-y is set to scroll.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-ovy--v {
+  overflow-y: visible;
+  /* ---
+section: Overflow Utils
+title: overflow-y visible
+order: 212
+---
+**.u-ovy--v**
+
+A utility class for setting an element's overflow-y to visible.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-ovy, $modifier: v [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo  u-ovy--v'>
+  This element's overflow-y is set to visible.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+html {
+  font-size: 37.5%;
+}
+
+body {
+  font-size: 2.6666666667em;
+  line-height: 4rem;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0 !important;
+}
+
+.fpo {
+  background-color: #09a5d9;
+  color: #fff;
+  height: 5rem;
+  padding: 1rem;
+}
+
+.fpo--x {
+  white-space: nowrap;
+}
+
+figure,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}

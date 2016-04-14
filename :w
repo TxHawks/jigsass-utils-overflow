@@ -1,0 +1,241 @@
+// *************************************
+//
+// # jigsass-utils-overflow
+// -> Overflow utility classes
+//
+// Author: TxHawks (tofu.hawks@gmail.com)
+// https://txhawks.github.io/jigsass-utils-overflow/
+//
+// *************************************
+
+@charset 'UTF-8';
+
+// -------------------------------------
+// Dependencies
+// -------------------------------------
+
+@if (not mixin-exists(jigsass-define-util)) {
+  @error '`jigsass-utils-overflow` has a dependency on `jigsass-tools-selectors`. ' +
+    'Please import it before importing this file.'
+}
+
+
+
+
+
+// -------------------------------------
+// Introduction
+// -------------------------------------
+
+// stylelint-disable
+/* ---
+section: Overflow Utils
+title: Introduction
+order: -10
+---
+
+A collection of dynamically generated `overflow` utility classes.
+
+Class names follow the [Emmet](http://docs.emmet.io/cheat-sheet/) abbreviation
+syntax, with colons (':') replaced by two dashes (`--`) to follow BEM naming
+conventions.
+E.g., the `overflow: hidden` utility class name is `.u-ov--h`.
+
+#### Available classes
+
+  - `.u-ov--v` (overflow: visible)
+  - `.u-ov--h` (overflow: hidden)
+  - `.u-ov--s` (overflow: scroll)
+  - `.u-ov--a` (overflow: auto)
+
+
+  - `.u-ovx--v` (overflow-x: visible)
+  - `.u-ovx--h` (overflow-x: hidden)
+  - `.u-ovx--s` (overflow-x: scroll)
+  - `.u-ovx--a` (overflow-x: auto)
+
+
+  - `.u-ovy--v` (overflow-y: visible)
+  - `.u-ovy--h` (overflow-y: hidden)
+  - `.u-ovy--s` (overflow-y: scroll)
+  - `.u-ovy--a` (overflow-y: auto)
+
+
+#### Installation
+
+Using npm:
+
+```sh
+npm i -S jigsass-utils-overflow
+```
+
+#### Usage
+Import JigSass Utils Overflow into your main scss file near its very end, together with all
+other utilities (utilities should always be the last to be imported).
+
+```scss
+@import 'path/to/jigsass-utils-overflow/scss/index';
+```
+
+Like all other JigSass Utils, JigSass Overfolow does not automatically generate any CSS
+when imported. You would need to explicitly indicate that each individual overflow
+class should actually be generated in each component or object it is used in
+(clarification: This will include style declarations inside `.foo` and .`bar`):
+
+```scss
+// _c.foo.scss
+.foo {
+  @include jigsass-util(u-ov, $modifier: h); // <-- overfolow: hidden
+
+  ...
+}
+```
+
+```scss
+// _c.bar.scss
+.bar {
+  @include jigsass-util(u-ovx, $modifier: h);  // <-- overflow-x: hidden
+  @include jigsass-util(u-ovx, $modifier: s, $from: large); // <-- overflow-x: scroll from large bp and on.
+
+  ...
+}
+```
+
+Doing so helps us a great deal with portability, as no matter where we import component or object
+partials, the correct utility classes will be generated. Think of it as a poor man's dependency
+management.
+
+Developer communication is also assisted by including "dependencies" wherever they are required,
+as anyone going through a partial, can easily understand how it should be marked up with just a
+glance.
+
+As far as bloat goes, just don't worry about it - the actual styles will only be generated once,
+at the location in the cascade where the Jigsass Clearfix partial was imported into the main file.
+
+
+JigSass Overflow classes are responsive-enabled, using [JigSass MQ](https://txhawks.github.io/jigsass-tools-mq/)
+and the breakpoints defined in the [$jigsass-breakpoints](https://txhawks.github.io/jigsass-tools-mq/#variable-jigsass-breakpoints) variable.
+
+Based on the breakpoint arguments passed to `jigsass-util` when including a overflow class, responsive
+modifiers are generated according to the following logic:
+
+```scss
+.u-ov--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
+.u-ovx--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
+.u-ovy--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
+```
+
+So, assuming the `medium`, `large` and `landscape` breakpoints are defined in `$jigsass-breakpoints`
+as `600px`, `1024px` and `(orientation: landscape)` respectively,
+
+```scss
+@include jigsass-util(u-ov, $modifier: h);
+```
+will generate the `.u-ov--h` class, which is not limited to any media-query.
+
+```scss
+@include jigsass-util(u-ov, $modifier: h, $until: medium);
+```
+
+will generate the `.u-ov--h--until-medium` class, which will be in effect at
+`(max-width: 37.49em)` and will override styles in the default class until that point.
+
+```scss
+@include jigsass-util(u-ov, $modifier: h, $from: large, $misc: landscape);
+```
+
+will generate the `.u-ov--h--from-large-when-landscape` class, which will go into
+effect at `(min-width: 64em) and (orientation: landscape)` and will override styles in the default
+class under these  conditions.
+
+
+**License:** MIT
+
+*/
+// stylelint-enable
+
+
+
+
+
+// -------------------------------------
+// Variables
+// -------------------------------------
+
+$_jigsass-overflow-props: (
+ u-ov: overflow,
+ u-ovx: overflow-x,
+ u-ovy: overflow-y
+);
+$_jigsass-overflow-vals: (
+ a: auto,
+ h: hidden,
+ s: scroll,
+ v: visible
+);
+
+// Used internally to store doclets
+$_doclet-store: () !default;
+
+// Used internally to ordering doclets
+$_jigsass-util-ov-i: 1;
+$_jigsass-util-ov-addition: (u-ov: 0, u-ovx: 100, u-ovy: 200);
+
+
+
+
+
+// -------------------------------------
+// Definitions
+// -------------------------------------
+
+@each $util in map-keys($_jigsass-overflow-props) {
+  @include jigsass-define-util($util) {
+    @if (not $jigsass-util-modifier) {
+      @error 'jigsass-utils-overflow: #{$jigsass-util-name} must be passed an overflow ' +
+        'value through a modifier.';
+    }
+
+    $prop: map-get($_jigsass-overflow-props, $jigsass-util-name);
+    $val: map-get($_jigsass-overflow-vals, $jigsass-util-modifier);
+
+    @if (not $val) {
+      @error 'jigsass-utils-overflow: valid modifiers for #{$jigsass-util-name} ' +
+        'are `a`, `h`, `s`, and `v`. You tried to pass `#{$jigsass-util-modifier}`.';
+    }
+
+    #{$prop}: $val;
+
+    $_doclet: $jigsass-util-name + ($jigsass-util-modifier or '');
+    @if (not index($_doclet-store, $_doclet)) {
+      $_doclet-store: append($_doclet-store, $_doclet) !global;
+      // stylelint-disable
+/* ---
+section: Overflow Utils
+title: #{$prop} #{$value}
+order: #{$_jigsass-util-ov-i + map-get($_jigsass-util-ov-addition, $jigsass-util-name)}
+---
+**.#{$jigsass-util-name}--#{$jigsass-util-modifier}**
+
+A utility class for setting an element's #{$prop} to #{$value}.
+
+#### Include with:
+
+```scss
+@include jigsass-util(#{$jigsass-util-name}, $modifier: #{$jigsass-util-modifier} [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo #{if($jigsass-util-name == u-ovx, fpo--x, '')} #{$jigsass-util-name}--#{$jigsass-util-modifier}'>
+  This element's #{$prop} is set to #{$value}.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+      $_jigsass-util-ov-i: $_jigsass-util-ov-i + 1 !global;
+      // stylelint-enable
+    }
+  }
+}
