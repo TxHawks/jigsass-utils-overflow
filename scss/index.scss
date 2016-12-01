@@ -61,6 +61,10 @@ E.g., the `overflow: hidden` utility class name is `.u-ov--h`.
   - `.u-ovy--a` (overflow-y: auto)
 
 
+  - `.u-tov--c` (text-overflow: clamp)
+  - `.u-tov--e` (text-overflow: ellipsis)
+
+
 #### Installation
 
 Using npm:
@@ -123,6 +127,7 @@ modifiers are generated according to the following logic:
 .u-ov--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
 .u-ovx--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
 .u-ovy--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
+.u-tov--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
 ```
 
 So, assuming the `medium`, `large` and `landscape` breakpoints are defined in `$jigsass-breakpoints`
@@ -163,15 +168,18 @@ class under these  conditions.
 // -------------------------------------
 
 $_jigsass-overflow-props: (
- u-ov: overflow,
- u-ovx: overflow-x,
- u-ovy: overflow-y
+  u-ov: overflow,
+  u-ovx: overflow-x,
+  u-ovy: overflow-y,
+  u-tov: text-overflow,
 );
 $_jigsass-overflow-vals: (
- a: auto,
- h: hidden,
- s: scroll,
- v: visible
+  a: auto,
+  c: clamp,
+  e: ellipsis,
+  h: hidden,
+  s: scroll,
+  v: visible,
 );
 
 // Used internally to store doclets
@@ -179,7 +187,7 @@ $_doclet-store: () !default;
 
 // Used internally to ordering doclets
 $_jigsass-util-ov-i: 1;
-$_jigsass-util-ov-addition: (u-ov: 0, u-ovx: 100, u-ovy: 200);
+$_jigsass-util-ov-addition: (u-ov: 0, u-ovx: 100, u-ovy: 200, u-tov: 300);
 
 
 
@@ -199,10 +207,6 @@ $_jigsass-util-ov-addition: (u-ov: 0, u-ovx: 100, u-ovy: 200);
     $prop: map-get($_jigsass-overflow-props, $jigsass-util-name);
     $val: map-get($_jigsass-overflow-vals, $jigsass-util-modifier);
 
-    @if (not $val) {
-      @error 'jigsass-utils-overflow: valid modifiers for #{$jigsass-util-name} ' +
-        'are `a`, `h`, `s`, and `v`. You tried to pass `#{$jigsass-util-modifier}`.';
-    }
 
     #{$prop}: $val;
 
@@ -228,7 +232,7 @@ A utility class for setting an element's #{$prop} to #{$val}.
 #### Example
 
 ```example:html
-<p class='fpo #{if($jigsass-util-name == u-ovx, fpo--x, '')} #{$jigsass-util-name}--#{$jigsass-util-modifier}'>
+<p class='fpo #{if($jigsass-util-name == u-tov, 'u-ov--h fpo--x', '')} #{if($jigsass-util-name == u-ovx, fpo--x, '')} #{$jigsass-util-name}--#{$jigsass-util-modifier}'>
   This element's #{$prop} is set to #{$val}.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>

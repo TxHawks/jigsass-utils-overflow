@@ -31,6 +31,10 @@ E.g., the `overflow: hidden` utility class name is `.u-ov--h`.
   - `.u-ovy--a` (overflow-y: auto)
 
 
+  - `.u-tov--c` (text-overflow: clamp)
+  - `.u-tov--e` (text-overflow: ellipsis)
+
+
 #### Installation
 
 Using npm:
@@ -80,7 +84,7 @@ as anyone going through a partial, can easily understand how it should be marked
 glance.
 
 As far as bloat goes, just don't worry about it - the actual styles will only be generated once,
-at the location in the cascade where the Jigsass Clearfix partial was imported into the main file.
+at the location in the cascade where the Jigsass Overflow partial was imported into the main file.
 
 
 JigSass Overflow classes are responsive-enabled, using [JigSass MQ](https://txhawks.github.io/jigsass-tools-mq/)
@@ -93,6 +97,7 @@ modifiers are generated according to the following logic:
 .u-ov--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
 .u-ovx--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
 .u-ovy--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
+.u-tov--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
 ```
 
 So, assuming the `medium`, `large` and `landscape` breakpoints are defined in `$jigsass-breakpoints`
@@ -142,7 +147,7 @@ A utility class for setting an element's overflow to auto.
 #### Example
 
 ```example:html
-<p class='fpo  u-ov--a'>
+<p class='fpo   u-ov--a'>
   This element's overflow is set to auto.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
@@ -170,7 +175,7 @@ A utility class for setting an element's overflow to hidden.
 #### Example
 
 ```example:html
-<p class='fpo  u-ov--h'>
+<p class='fpo   u-ov--h'>
   This element's overflow is set to hidden.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
@@ -198,7 +203,7 @@ A utility class for setting an element's overflow to scroll.
 #### Example
 
 ```example:html
-<p class='fpo  u-ov--s'>
+<p class='fpo   u-ov--s'>
   This element's overflow is set to scroll.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
@@ -226,7 +231,7 @@ A utility class for setting an element's overflow to visible.
 #### Example
 
 ```example:html
-<p class='fpo  u-ov--v'>
+<p class='fpo   u-ov--v'>
   This element's overflow is set to visible.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
@@ -254,7 +259,7 @@ A utility class for setting an element's overflow-x to auto.
 #### Example
 
 ```example:html
-<p class='fpo fpo--x u-ovx--a'>
+<p class='fpo  fpo--x u-ovx--a'>
   This element's overflow-x is set to auto.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
@@ -282,7 +287,7 @@ A utility class for setting an element's overflow-x to hidden.
 #### Example
 
 ```example:html
-<p class='fpo fpo--x u-ovx--h'>
+<p class='fpo  fpo--x u-ovx--h'>
   This element's overflow-x is set to hidden.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
@@ -310,7 +315,7 @@ A utility class for setting an element's overflow-x to scroll.
 #### Example
 
 ```example:html
-<p class='fpo fpo--x u-ovx--s'>
+<p class='fpo  fpo--x u-ovx--s'>
   This element's overflow-x is set to scroll.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
@@ -338,7 +343,7 @@ A utility class for setting an element's overflow-x to visible.
 #### Example
 
 ```example:html
-<p class='fpo fpo--x u-ovx--v'>
+<p class='fpo  fpo--x u-ovx--v'>
   This element's overflow-x is set to visible.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
@@ -366,7 +371,7 @@ A utility class for setting an element's overflow-y to auto.
 #### Example
 
 ```example:html
-<p class='fpo  u-ovy--a'>
+<p class='fpo   u-ovy--a'>
   This element's overflow-y is set to auto.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
@@ -394,7 +399,7 @@ A utility class for setting an element's overflow-y to hidden.
 #### Example
 
 ```example:html
-<p class='fpo  u-ovy--h'>
+<p class='fpo   u-ovy--h'>
   This element's overflow-y is set to hidden.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
@@ -422,7 +427,7 @@ A utility class for setting an element's overflow-y to scroll.
 #### Example
 
 ```example:html
-<p class='fpo  u-ovy--s'>
+<p class='fpo   u-ovy--s'>
   This element's overflow-y is set to scroll.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
@@ -450,8 +455,36 @@ A utility class for setting an element's overflow-y to visible.
 #### Example
 
 ```example:html
-<p class='fpo  u-ovy--v'>
+<p class='fpo   u-ovy--v'>
   This element's overflow-y is set to visible.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-tov--c {
+  text-overflow: clamp;
+  /* ---
+section: Overflow Utils
+title: text-overflow clamp
+order: 313
+---
+**.u-tov--c**
+
+A utility class for setting an element's text-overflow to clamp.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-tov, $modifier: c [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo u-ov--h fpo--x  u-tov--c'>
+  This element's text-overflow is set to clamp.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
 ```

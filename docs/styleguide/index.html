@@ -83,6 +83,11 @@
 					
 				</li>
 				
+				<li>
+					<a href="#text-overflow-clamp"><span>text-overflow clamp</span></a>
+					
+				</li>
+				
 	</ul>
 	
 				</li>
@@ -126,6 +131,10 @@ E.g., the <code>overflow: hidden</code> utility class name is <code>.u-ov--h</co
 <li><code>.u-ovy--s</code> (overflow-y: scroll)</li>
 <li><code>.u-ovy--a</code> (overflow-y: auto)</li>
 </ul>
+<ul>
+<li><code>.u-tov--c</code> (text-overflow: clamp)</li>
+<li><code>.u-tov--e</code> (text-overflow: ellipsis)</li>
+</ul>
 <h4 id="installation">Installation</h4>
 <p>Using npm:</p>
 <pre><code class="lang-sh">npm i -S jigsass-utils-overflow
@@ -161,7 +170,7 @@ management.</p>
 as anyone going through a partial, can easily understand how it should be marked up with just a
 glance.</p>
 <p>As far as bloat goes, just don&#39;t worry about it - the actual styles will only be generated once,
-at the location in the cascade where the Jigsass Clearfix partial was imported into the main file.</p>
+at the location in the cascade where the Jigsass Overflow partial was imported into the main file.</p>
 <p>JigSass Overflow classes are responsive-enabled, using <a href="https://txhawks.github.io/jigsass-tools-mq/">JigSass MQ</a>
 and the breakpoints defined in the <a href="https://txhawks.github.io/jigsass-tools-mq/#variable-jigsass-breakpoints">$jigsass-breakpoints</a> variable.</p>
 <p>Based on the breakpoint arguments passed to <code>jigsass-util</code> when including a overflow class, responsive
@@ -169,6 +178,7 @@ modifiers are generated according to the following logic:</p>
 <pre><code class="lang-scss">.u-ov--&lt;modifier&gt;[-[-from-&lt;breakpoint-name&gt;][-until-&lt;breakpoint-name&gt;][-misc-&lt;breakpoint-name&gt;]]
 .u-ovx--&lt;modifier&gt;[-[-from-&lt;breakpoint-name&gt;][-until-&lt;breakpoint-name&gt;][-misc-&lt;breakpoint-name&gt;]]
 .u-ovy--&lt;modifier&gt;[-[-from-&lt;breakpoint-name&gt;][-until-&lt;breakpoint-name&gt;][-misc-&lt;breakpoint-name&gt;]]
+.u-tov--&lt;modifier&gt;[-[-from-&lt;breakpoint-name&gt;][-until-&lt;breakpoint-name&gt;][-misc-&lt;breakpoint-name&gt;]]
 </code></pre>
 <p>So, assuming the <code>medium</code>, <code>large</code> and <code>landscape</code> breakpoints are defined in <code>$jigsass-breakpoints</code>
 as <code>600px</code>, <code>1024px</code> and <code>(orientation: landscape)</code> respectively,</p>
@@ -199,7 +209,7 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ov, $modifier: a [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo  u-ov--a&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo   u-ov--a&#39;&gt;
   This element&#39;s overflow is set to auto.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
@@ -218,7 +228,7 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ov, $modifier: h [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo  u-ov--h&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo   u-ov--h&#39;&gt;
   This element&#39;s overflow is set to hidden.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
@@ -237,7 +247,7 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ov, $modifier: s [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo  u-ov--s&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo   u-ov--s&#39;&gt;
   This element&#39;s overflow is set to scroll.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
@@ -256,7 +266,7 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ov, $modifier: v [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo  u-ov--v&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo   u-ov--v&#39;&gt;
   This element&#39;s overflow is set to visible.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
@@ -275,7 +285,7 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ovx, $modifier: a [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo fpo--x u-ovx--a&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo  fpo--x u-ovx--a&#39;&gt;
   This element&#39;s overflow-x is set to auto.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
@@ -294,7 +304,7 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ovx, $modifier: h [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo fpo--x u-ovx--h&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo  fpo--x u-ovx--h&#39;&gt;
   This element&#39;s overflow-x is set to hidden.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
@@ -313,7 +323,7 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ovx, $modifier: s [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo fpo--x u-ovx--s&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo  fpo--x u-ovx--s&#39;&gt;
   This element&#39;s overflow-x is set to scroll.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
@@ -332,7 +342,7 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ovx, $modifier: v [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo fpo--x u-ovx--v&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo  fpo--x u-ovx--v&#39;&gt;
   This element&#39;s overflow-x is set to visible.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
@@ -351,7 +361,7 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ovy, $modifier: a [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo  u-ovy--a&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo   u-ovy--a&#39;&gt;
   This element&#39;s overflow-y is set to auto.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
@@ -370,7 +380,7 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ovy, $modifier: h [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo  u-ovy--h&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo   u-ovy--h&#39;&gt;
   This element&#39;s overflow-y is set to hidden.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
@@ -389,7 +399,7 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ovy, $modifier: s [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo  u-ovy--s&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo   u-ovy--s&#39;&gt;
   This element&#39;s overflow-y is set to scroll.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
@@ -408,8 +418,27 @@ class under these  conditions.</p>
 <pre><code class="lang-scss">@include jigsass-util(u-ovy, $modifier: v [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
-<pre><code class="lang-example:html">&lt;p class=&#39;fpo  u-ovy--v&#39;&gt;
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo   u-ovy--v&#39;&gt;
   This element&#39;s overflow-y is set to visible.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+&lt;/p&gt;
+</code></pre>
+
+				
+			</div>
+		</section>
+		
+		<section id="text-overflow-clamp">
+			<h3>text-overflow clamp</h3>
+			<div>
+				<p><strong>.u-tov--c</strong></p>
+<p>A utility class for setting an element&#39;s text-overflow to clamp.</p>
+<h4 id="include-with-">Include with:</h4>
+<pre><code class="lang-scss">@include jigsass-util(u-tov, $modifier: c [, $from, $until, $misc]);
+</code></pre>
+<h4 id="example">Example</h4>
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo u-ov--h fpo--x  u-tov--c&#39;&gt;
+  This element&#39;s text-overflow is set to clamp.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
 </code></pre>
@@ -421,7 +450,7 @@ class under these  conditions.</p>
 			</div>
 		</section>
 		
-	<footer>Last modified Friday, 22 April 2016 23:12</footer>
+	<footer>Last modified Thursday, 1 December 2016 15:08</footer>
 </main>
 <script src="prism.js"></script>
 <script src="examples.js"></script>
