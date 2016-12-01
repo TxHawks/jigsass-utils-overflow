@@ -84,7 +84,12 @@
 				</li>
 				
 				<li>
-					<a href="#text-overflow-clamp"><span>text-overflow clamp</span></a>
+					<a href="#text-overflow-clip"><span>text-overflow clip</span></a>
+					
+				</li>
+				
+				<li>
+					<a href="#text-overflow-ellipsis"><span>text-overflow ellipsis</span></a>
 					
 				</li>
 				
@@ -428,17 +433,36 @@ class under these  conditions.</p>
 			</div>
 		</section>
 		
-		<section id="text-overflow-clamp">
-			<h3>text-overflow clamp</h3>
+		<section id="text-overflow-clip">
+			<h3>text-overflow clip</h3>
 			<div>
 				<p><strong>.u-tov--c</strong></p>
-<p>A utility class for setting an element&#39;s text-overflow to clamp.</p>
+<p>A utility class for setting an element&#39;s text-overflow to clip.</p>
 <h4 id="include-with-">Include with:</h4>
 <pre><code class="lang-scss">@include jigsass-util(u-tov, $modifier: c [, $from, $until, $misc]);
 </code></pre>
 <h4 id="example">Example</h4>
 <pre><code class="lang-example:html">&lt;p class=&#39;fpo u-ov--h fpo--x  u-tov--c&#39;&gt;
-  This element&#39;s text-overflow is set to clamp.
+  This element&#39;s text-overflow is set to clip.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+&lt;/p&gt;
+</code></pre>
+
+				
+			</div>
+		</section>
+		
+		<section id="text-overflow-ellipsis">
+			<h3>text-overflow ellipsis</h3>
+			<div>
+				<p><strong>.u-tov--e</strong></p>
+<p>A utility class for setting an element&#39;s text-overflow to ellipsis.</p>
+<h4 id="include-with-">Include with:</h4>
+<pre><code class="lang-scss">@include jigsass-util(u-tov, $modifier: e [, $from, $until, $misc]);
+</code></pre>
+<h4 id="example">Example</h4>
+<pre><code class="lang-example:html">&lt;p class=&#39;fpo u-ov--h fpo--x  u-tov--e&#39;&gt;
+  This element&#39;s text-overflow is set to ellipsis.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 &lt;/p&gt;
 </code></pre>
@@ -450,7 +474,7 @@ class under these  conditions.</p>
 			</div>
 		</section>
 		
-	<footer>Last modified Thursday, 1 December 2016 15:08</footer>
+	<footer>Last modified Thursday, 1 December 2016 15:27</footer>
 </main>
 <script src="prism.js"></script>
 <script src="examples.js"></script>

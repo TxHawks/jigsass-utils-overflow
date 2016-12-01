@@ -41,7 +41,7 @@ $_overflow: u-ov u-ovx u-ovy;
 }
 
 @include jigsass-util(u-tov, $modifier: c);
-// @include jigsass-util(u-tov, $modifier: e);
+@include jigsass-util(u-tov, $modifier: e);
 
 
 @import 'index.scss';
