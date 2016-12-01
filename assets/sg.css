@@ -464,15 +464,15 @@ A utility class for setting an element's overflow-y to visible.
 }
 
 .u-tov--c {
-  text-overflow: clamp;
+  text-overflow: clip;
   /* ---
 section: Overflow Utils
-title: text-overflow clamp
+title: text-overflow clip
 order: 313
 ---
 **.u-tov--c**
 
-A utility class for setting an element's text-overflow to clamp.
+A utility class for setting an element's text-overflow to clip.
 
 #### Include with:
 
@@ -484,7 +484,35 @@ A utility class for setting an element's text-overflow to clamp.
 
 ```example:html
 <p class='fpo u-ov--h fpo--x  u-tov--c'>
-  This element's text-overflow is set to clamp.
+  This element's text-overflow is set to clip.
+  Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
+</p>
+```
+*/
+}
+
+.u-tov--e {
+  text-overflow: ellipsis;
+  /* ---
+section: Overflow Utils
+title: text-overflow ellipsis
+order: 314
+---
+**.u-tov--e**
+
+A utility class for setting an element's text-overflow to ellipsis.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-tov, $modifier: e [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<p class='fpo u-ov--h fpo--x  u-tov--e'>
+  This element's text-overflow is set to ellipsis.
   Lorem ipsum dolor sit amet, nam cu clita persius eruditi, qui ei explicari persecuti. Ut vim nominavi quaestio rationibus, sed graeci labore utroque at, agam lucilius perpetua quo et. Te vis modus volumus menandri, doctus pericula at eos, autem omittantur ius ut. Ea quo tantas graece mandamus. In nibh iriure molestie pri, te eam quot consul quaerendum, ius ea justo neglegentur
 </p>
 ```
